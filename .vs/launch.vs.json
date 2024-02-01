@@ -1,0 +1,29 @@
+{
+  "version": "0.2.1",
+  "defaults": {},
+  "configurations": [
+    {
+      "isDefaultConfiguration": true,
+      "noDebug": true,
+      "type": "dll",
+      "name": "CMakeLists.txt",
+      "project": "CMakeLists.txt",
+      "projectTarget": "",
+      "currentDir": "${env.GAME_ROOT_DIRECTORY}",
+      "exe": "${env.ComSpec}",
+      "args": [
+        "/C \"${env.GAME_ROOT_DIRECTORY}/GoW.exe\" && taskkill /F /IM VsDebugConsole.exe"
+      ],
+      "environment": [
+        {
+          "name": "LDR_DEBUGGER_REQUEST",
+          "value": "${env.LDR_DEBUGGER_REQUEST}"
+        },
+        {
+          "name": "LDR_DEBUGGER_PROC",
+          "value": "${env.LDR_DEBUGGER_PROC}"
+        }
+      ]
+    }
+  ]
+}

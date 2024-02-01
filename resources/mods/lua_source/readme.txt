@@ -1,0 +1,1 @@
+Placeholder for binary lua scripts extracted from game files. These are for reference purposes. No files are loaded from this directory.

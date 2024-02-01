@@ -1,0 +1,2 @@
+Lua script files (*.lua) will be loaded from this directory. Script paths must be identical to the ones provided in the 'lua_source' folder. If you
+want to edit all files as you please, rename 'lua_source' to 'lua'.

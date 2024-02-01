@@ -1,0 +1,89 @@
+{
+  "version": 6,
+  "include": [
+    "CMakeUserEnvVars.json"
+  ],
+  "configurePresets": [
+    {
+      "name": "config-base-vcpkg",
+      "hidden": true,
+      "toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+      "cacheVariables": {
+        "VCPKG_TARGET_TRIPLET": "x64-windows-static",
+        "VCPKG_HOST_TRIPLET": "x64-windows-static",
+        "VCPKG_OVERLAY_PORTS": "${sourceDir}/vcpkg-ports"
+      }
+    },
+    {
+      "name": "config-base-cmake",
+      "hidden": true,
+      "binaryDir": "${sourceDir}/bin/${presetName}",
+      "cacheVariables": {
+        "CMAKE_CONFIGURATION_TYPES": "Debug;Release",
+        "CMAKE_INTERPROCEDURAL_OPTIMIZATION_RELEASE": "TRUE"
+      }
+    },
+    {
+      "name": "config-base-ninja",
+      "hidden": true,
+      "generator": "Ninja Multi-Config",
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      },
+      "cacheVariables": {
+        "CMAKE_CXX_FLAGS": "/MP /diagnostics:caret",
+        "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded$<$<CONFIG:Debug>:Debug>"
+      }
+    },
+    {
+      "name": "config-base-msvc2022",
+      "hidden": true,
+      "generator": "Visual Studio 17 2022",
+      "architecture": {
+        "value": "x64"
+      },
+      "inherits": [
+        "config-base-ninja"
+      ]
+    },
+    {
+      "name": "configuration-final",
+      "hidden": true,
+      "inherits": [
+        "config-base-vcpkg",
+        "config-base-cmake",
+        "config-base-ninja",
+        "config-envvars"
+      ]
+    },
+    {
+      "name": "final-universal",
+      "inherits": [
+        "configuration-final"
+      ]
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "final-universal-debug",
+      "configurePreset": "final-universal",
+      "configuration": "Debug",
+      "displayName": "Universal Debug x64"
+    },
+    {
+      "name": "final-universal-release",
+      "configurePreset": "final-universal",
+      "configuration": "Release",
+      "displayName": "Universal Release x64"
+    }
+  ],
+  "packagePresets": [
+    {
+      "name": "final-universal",
+      "displayName": "Package Final Universal",
+      "configurePreset": "final-universal",
+      "packageDirectory": "${sourceDir}/bin/built-packages"
+    }
+  ]
+}

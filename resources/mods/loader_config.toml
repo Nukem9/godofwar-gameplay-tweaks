@@ -1,0 +1,50 @@
+# GoW Script Loader & Gameplay Tweaks
+# Source code: <TBD>
+#
+# This is a BETA release. Expect bugs.
+
+#
+# *** MAIN SETTINGS ***
+#
+[General]
+EnableDebugMenu = true              # Enable the debug menu. Toggled with the hotkey below ('~' by default).
+DebugMenuFontScale = 1.0            # Change the global font scale in the debug menu.
+
+[Gameplay]
+SkipIntroLogos = true               # Skip the intro logo movies on game startup.
+RemoveDepthOfField = false          # Disable the depth of field post-processing effect.
+UnlockPhotomodeCamera = false       # Remove the camera restrictions when using photo mode.
+OverrideCameraFov = false           # Force a specific field of view for the third person camera. Does not apply to photo mode.
+CameraFov = 90.0                    # Field of view value to use. Game default is 74.
+
+#
+# *** HOTKEYS (KEYBINDS) ***
+#
+# Each hotkey maps to one of the Windows virtual key codes in hexadecimal format. To disable a keybind, set its value to -1.
+# You can find a list of keys here: https://docs.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes
+#
+[Hotkeys]
+ToggleDebugUI = 0xC0                # '~'  key. Toggles the main menu bar and cursor.
+ToggleFreeflyCamera = 0x75          # 'F6' key. Toggles the freefly camera.
+ToggleNoclip = 0x74                 # 'F5' key. Toggles noclip.
+
+#
+# *** LUA ***
+#
+# Lua source files will be loaded from the "lua" subdirectory next to this configuration file (typically "GodOfWar/mods/lua"). Any
+# dumped scripts will have the file extension ".lua.bin" and require decompilation with a tool such as unluac. Script compilation
+# errors will be logged to the debug console. Also note that game updates have a tendency to modify lua scripts.
+#
+[Lua]
+LoadScripts = true                  # Enable runtime loading and compilation of lua scripts.
+DumpScripts = false                 # Enable runtime dumping of lua bytecode files.
+
+#
+# *** ADVANCED ***
+#
+[Advanced]
+ConsoleLogLevel = "warn"            # Sets the minimum log level for the ingame console. Options: "off", "trace", "debug", "info", "warning", "error", "critical".
+FileLogLevel = "off"                # Sets the minimum log level for "mods/loader_log.txt". Options: "off", "trace", "debug", "info", "warning", "error", "critical".
+
+RemoveWindowsVersionCheck = false   # Disable the Windows 10 version check. Allows users to play the game on Windows 7/8 in
+                                    # conjunction with DXVK (Vulkan).
